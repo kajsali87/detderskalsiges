@@ -174,7 +174,7 @@
   .om-note{font-family:var(--sans);font-size:.8rem;color:var(--ink-faint);border-left:2px solid var(--line);padding-left:12px;margin:.4rem 0 0;}
   .om-keep{margin-top:clamp(24px,4vw,36px);max-width:60ch;}
   .om-keep p{margin:0 0 .8rem;color:var(--ink);}
-  .om-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(22px,3vw,30px);}
+  .om-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(32px,4.5vw,46px);}
 
   /* foredrag */
   .talks{display:flex;flex-direction:column;}
@@ -285,9 +285,35 @@
   details > summary:hover{color:var(--ink);}
   .talk-more{margin-top:.7rem;}
   .talk-more p{margin:.7rem 0 0;color:var(--ink-soft);font-size:1rem;line-height:1.55;max-width:62ch;}
-  .om-more{margin-top:clamp(20px,3vw,30px);border-top:1px solid var(--line);padding-top:16px;}
-  .om-more > summary{font-size:.84rem;}
-  .om-more[open] > summary{margin-bottom:22px;}
+  .om-more{margin-top:clamp(20px,3vw,30px);border-top:1px solid var(--line);padding-top:18px;}
+  /* Sammenklappet lå denne summary som løbende småtekst lige over knapperne
+     i .om-actions og blev læst som en overskrift til dem. Den er nu formet
+     som en selvstændig kontrol — pille, chevron og skiftende tekst — så det
+     fremgår, at den folder afsnittet ud og ikke hører til knapperne. */
+  .om-more > summary{
+    display:inline-flex;align-items:center;gap:10px;width:fit-content;cursor:pointer;
+    list-style:none;font-family:var(--sans);font-size:.68rem;font-weight:600;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+    padding:9px 16px;border:1px solid var(--line);border-radius:999px;
+    transition:color .2s ease,border-color .2s ease,background-color .2s ease;
+  }
+  .om-more > summary::marker{content:"";}
+  .om-more > summary::-webkit-details-marker{display:none;}
+  .om-more > summary::after{
+    content:"";width:6px;height:6px;flex:0 0 auto;
+    border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
+    transform:translateY(-2px) rotate(45deg);transition:transform .2s ease;
+  }
+  .om-more[open] > summary::after{transform:translateY(1px) rotate(-135deg);}
+  .om-more > summary:hover{color:var(--ink);border-color:var(--ink-faint);background:var(--accent-wash);}
+  .om-more > summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .om-more .om-more-open{display:none;}
+  .om-more[open] .om-more-shut{display:none;}
+  .om-more[open] .om-more-open{display:inline;}
+  .om-more[open] > summary{margin-bottom:24px;}
+  @media (prefers-reduced-motion:reduce){
+    .om-more > summary,.om-more > summary::after{transition:none;}
+  }
   .om-chips{display:flex;flex-wrap:wrap;gap:.4rem 1rem;margin:1.3rem 0 0;}
   .om-chips .chip{font-family:var(--sans);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
   .om-chips .chip:not(:last-child)::after{content:"·";margin-left:1rem;color:var(--accent);}
@@ -575,7 +601,7 @@
         </div>
       </div>
 
-      <details class="om-more reveal"><summary>Læs hele baggrunden</summary>
+      <details class="om-more reveal"><summary><span class="om-more-shut">Læs hele baggrunden</span><span class="om-more-open">Skjul baggrunden</span></summary>
       <div class="om-cols">
         <div class="om-block">
           <p class="om-h">Fra forvaltningen</p>
@@ -757,7 +783,7 @@
           <div class="stot-card">
             <span class="k">Engangsbeløb</span>
             <h3>En kop kaffe</h3>
-            <p>Send et engangsbeløb via MobilePay.</p>
+            <p>Send et engangsbeløb via MobilePay, hvis du vil støtte mit arbejde. Tusind tak!</p>
             <div class="mp-number">+46 (0)70 278 12 82</div>
             <button class="btn ghost mp-copy" type="button" data-mp="+46702781282">Kopiér nummer</button>
           </div>
