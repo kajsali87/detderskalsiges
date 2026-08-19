@@ -19,18 +19,21 @@
     --serif:"Palatino Linotype",Palatino,"Book Antiqua","Iowan Old Style",Georgia,serif;
     --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     --wrap:1140px;
+    --logo:#3B3940; --logo-hi:#1B1A1E;
   }
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
     --paper:#141317; --surface:#1B1A20; --ink:#ECE9E0; --ink-soft:#A9A59C; --ink-faint:#7C7970;
     --line:rgba(236,233,224,.16); --line-soft:rgba(236,233,224,.08);
     --accent:#D07A70; --accent-str:#E19A91; --accent-wash:rgba(208,122,112,.12);
     --shadow:0 1px 2px rgba(0,0,0,.3),0 18px 40px -20px rgba(0,0,0,.6);
+    --logo:#C3BFB6; --logo-hi:#FFFDF7;
   }}
   :root[data-theme="dark"]{
     --paper:#141317; --surface:#1B1A20; --ink:#ECE9E0; --ink-soft:#A9A59C; --ink-faint:#7C7970;
     --line:rgba(236,233,224,.16); --line-soft:rgba(236,233,224,.08);
     --accent:#D07A70; --accent-str:#E19A91; --accent-wash:rgba(208,122,112,.12);
     --shadow:0 1px 2px rgba(0,0,0,.3),0 18px 40px -20px rgba(0,0,0,.6);
+    --logo:#C3BFB6; --logo-hi:#FFFDF7;
   }
 
   *{box-sizing:border-box;}
@@ -89,10 +92,33 @@
   .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:clamp(24px,4vw,34px);}
   .hero-portrait{margin:0;}
   .hero-portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 15%;border-radius:3px;border:1px solid var(--line);box-shadow:var(--shadow);display:block;}
-  .press{border-top:1px solid var(--line);margin-top:clamp(20px,3vw,32px);padding-top:18px;display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;}
-  .press .lbl{font-family:var(--sans);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);}
-  .press .name{font-family:var(--serif);font-style:italic;color:var(--ink-soft);}
-  .press .sep{color:var(--accent);}
+  .press{border-top:1px solid var(--line);margin-top:clamp(20px,3vw,32px);padding-top:18px;display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;}
+  .press .lbl{font-family:var(--sans);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);flex:0 0 auto;}
+
+  /* Logo-stribe. Hvert logo er en CSS-maske: selve billedfilen bruges kun som
+     silhuet (alfa-kanal), og farven kommer fra background-color. Derfor giver
+     ét asset både gråtone i light mode og lys i dark mode, uden filter-hacks
+     og uden separate filer pr. tema. Kilder og licenser: assets/logos/README.md */
+  .press-logos{display:flex;flex-wrap:wrap;align-items:center;gap:13px clamp(12px,1.4vw,16px);}
+  .press-logo{
+    display:block;flex:0 0 auto;
+    height:var(--h,18px);aspect-ratio:var(--ar);
+    color:var(--logo);background-color:currentColor;opacity:.82;
+    -webkit-mask:var(--src) no-repeat center/contain;
+            mask:var(--src) no-repeat center/contain;
+    transition:color .22s ease,opacity .22s ease;
+  }
+  .press-logos:hover .press-logo{opacity:.45;}
+  .press-logos .press-logo:hover{color:var(--logo-hi);opacity:1;}
+  /* --ar = logoets eget bredde/højde-forhold (fra dets tætte viewBox);
+     --h justeres optisk pr. mærke, så de vejer ens trods forskellige former */
+  .press-logo.is-berlingske{--src:url(assets/logos/berlingske.svg);--ar:4.859;--h:16px;}
+  .press-logo.is-jp{--src:url(assets/logos/jyllands-posten.svg);--ar:8.837;--h:13px;}
+  .press-logo.is-eb{--src:url(assets/logos/ekstra-bladet.svg);--ar:1.167;--h:30px;}
+  .press-logo.is-kontrast{--src:url(assets/logos/kontrast.png);--ar:8.895;--h:11px;}
+  .press-logo.is-huffpost{--src:url(assets/logos/huffpost.svg);--ar:8.552;--h:12px;}
+  .press-logo.is-substack{--src:url(assets/logos/substack.svg);--ar:5.815;--h:15px;}
+  @media (prefers-reduced-motion:reduce){.press-logo{transition:none;}}
 
   /* tre indgange */
   .entries{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden;}
@@ -344,12 +370,14 @@
           </div>
           <div class="press">
             <span class="lbl">Artikler i</span>
-            <span class="name">Berlingske</span><span class="sep">·</span>
-            <span class="name">Jyllands-Posten</span><span class="sep">·</span>
-            <span class="name">Ekstra Bladet</span><span class="sep">·</span>
-            <span class="name">Kontrast</span><span class="sep">·</span>
-            <span class="name">Huffington Post</span><span class="sep">·</span>
-            <span class="name">Substack</span>
+            <div class="press-logos">
+              <span class="press-logo is-berlingske" role="img" aria-label="Berlingske"></span>
+              <span class="press-logo is-jp" role="img" aria-label="Jyllands-Posten"></span>
+              <span class="press-logo is-eb" role="img" aria-label="Ekstra Bladet"></span>
+              <span class="press-logo is-kontrast" role="img" aria-label="Kontrast"></span>
+              <span class="press-logo is-huffpost" role="img" aria-label="Huffington Post"></span>
+              <span class="press-logo is-substack" role="img" aria-label="Substack"></span>
+            </div>
           </div>
         </div>
         <figure class="hero-portrait">
