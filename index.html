@@ -298,19 +298,21 @@
     display:inline-flex;align-items:center;gap:10px;width:fit-content;cursor:pointer;
     list-style:none;font-family:var(--sans);font-size:.68rem;font-weight:600;
     letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
-    padding:9px 16px;border:1px solid var(--line);border-radius:999px;
-    transition:color .2s ease,border-color .2s ease,background-color .2s ease;
+    padding:2px 0;transition:color .2s ease;
   }
   .om-more > summary::marker{content:"";}
   .om-more > summary::-webkit-details-marker{display:none;}
+  /* Sidens globale details-markør er et "+" i accentfarven (se details > summary
+     ::after ovenfor). Her erstattes den af en pil ned, men accentfarven beholdes,
+     så de to fold ud-kontroller på siden ser ens ud. */
   .om-more > summary::after{
-    content:"";width:6px;height:6px;flex:0 0 auto;
+    content:"";width:6px;height:6px;flex:0 0 auto;color:var(--accent);
     border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;
     transform:translateY(-2px) rotate(45deg);transition:transform .2s ease;
   }
   .om-more[open] > summary::after{transform:translateY(1px) rotate(-135deg);}
-  .om-more > summary:hover{color:var(--ink);border-color:var(--ink-faint);background:var(--accent-wash);}
-  .om-more > summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  .om-more > summary:hover{color:var(--ink);}
+  .om-more > summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}
   .om-more .om-more-open{display:none;}
   .om-more[open] .om-more-shut{display:none;}
   .om-more[open] .om-more-open{display:inline;}
@@ -600,50 +602,52 @@
         <div class="om-lead reveal">
           <p class="eyebrow" style="margin-bottom:1rem;">Om <span class="dot">·</span> Kajsa Li Paludan</p>
           <p>Jeg har arbejdet i de rum, jeg nu skriver om.</p>
-          <p>Statslig forvaltning, internationale forhandlinger, egne virksomheder. Siden 2009.</p>
-          <p class="muted" style="font-size:1.05rem;">Jeg har siddet på begge sider af bordet: i embedsværket, der formulerer politikken, og i virksomheden, der skal leve med den.</p>
+          <p>Egne virksomheder, statslig forvaltning, internationale forhandlinger. Siden 2008.</p>
+          <p class="muted" style="font-size:1.05rem;">Jeg har siddet på begge sider af bordet: i embedsværket, der formulerer politikken, og i virksomheden og i samfundet, der skal leve med den. Jeg bruger litteraturens blik for, hvad ord gør ved mennesker, og politikkens for, hvem der tjener på det.</p>
+          <p class="om-manifesto">Jeg sætter frisindet højest: retten til at tænke, tro og sige det forkerte, og pligten til at lade andre gøre det samme. Målet er ikke at få ret, men at holde samtalen åben dér, hvor den ellers lukkes ned.</p>
           <div class="om-chips">
             <span class="chip">Fellow, Salzburg Global Seminar</span>
-            <span class="chip">Future Sustainability Leader, DNV GL</span>
-            <span class="chip">B.A. Lund · M.A. New Orleans · Wharton &amp; CBS</span>
+            <span class="chip">B.A. Lunds Universitet</span>
+            <span class="chip">M.A. University of New Orleans</span>
+            <span class="chip">Wharton og Copenhagen Business School</span>
           </div>
-          <p class="om-manifesto">Frisindet højest: retten til at tænke, tro og sige det forkerte – og pligten til at lade andre gøre det samme. Målet er ikke at få ret, men at holde samtalen åben dér, hvor den ellers lukkes ned.</p>
         </div>
       </div>
 
-      <details class="om-more reveal"><summary><span class="om-more-shut">Læs hele baggrunden</span><span class="om-more-open">Skjul baggrunden</span></summary>
+      <details class="om-more reveal"><summary><span class="om-more-shut">Læs hele min baggrund</span><span class="om-more-open">Skjul min baggrund</span></summary>
       <div class="om-cols">
         <div class="om-block">
-          <p class="om-h">Fra forvaltningen</p>
-          <p>Ansat ved myndighed i Sverige, siden 2018. Siden 2021 nordisk og international koordinator af multilaterale samarbejder – i praksis strategisk politisk analyse og public relations ved en af Sveriges største statslige forskningsfinansierer. Rådgiver Regeringskansliet og repræsenterer Sverige i nordiske og internationale fora.</p>
-          <p>2018–2021 Policy Advisor og Program Manager for internationale klimasamarbejder, bl.a. FN, IEA, CTCN.</p>
-          <p class="strong">Det politiske miljø er langsomt og hårdt. Fuldt af modsigelser og kontraster. Diplomati og forhandling er som regel nøglen til, at noget lykkes.</p>
-          <p class="om-note">Jeg bedriver ikke min virksomhed i regi af mit myndighedsarbejde, og mine holdninger står for egen regning.</p>
+          <p class="om-h">Fra skrivebordet</p>
+          <p>Egen udgivelse, Det der skal siges. Foredrag og analyse.</p>
+          <p>Skriver for og har artikler i: Kontrast, Berlingske, Jyllands-Posten, Ekstra Bladet og Huffington Post.</p>
+          <p>Bogen “Berøringsangst: Vidnesbyrd om et islamisk normpres, som fagfolk slår sig på hver dag”, epilog, Forlaget Pressto, 2026.</p>
+          <p>Bogen “Naturens sprog”, essay, Eksistensen, 2018.</p>
+          <p>To bøger undervejs: <em>Breve til Friheden</em>, essays om frihedens pris, og en bog om hykleri som social mekanisme.</p>
         </div>
         <div class="om-block">
           <p class="om-h">Fra virksomhederne</p>
-          <p>Direktør og medstifter af Growing Pathways, København, 2015–2018. Strategisk rådgivning i bæredygtighed for Nordisk Ministerråd, Novo Nordisk og Københavns Kommune.</p>
-          <p>Direktør og medstifter af Cultura21 Nordic &amp; International, 2009–2014.</p>
-          <p class="strong">Jeg ved, hvad det koster at holde en organisation i gang, og hvilke udfordringer man kan stå med.</p>
+          <p>Direktør og medstifter af Growing Pathways, København, 2015 til 2018. Strategisk rådgivning i bæredygtighed for Nordisk Ministerråd, Novo Nordisk og Københavns Kommune, m.fl.</p>
+          <p>Direktør og medstifter af Cultura21 Nordic &amp; International, 2009 til 2014.</p>
+        </div>
+        <div class="om-block">
+          <p class="om-h">Fra forvaltningen</p>
+          <p>Ansat ved en svensk statslig myndighed siden 2018, og siden 2021 koordinator for internationalt samarbejde ved et af Sveriges største offentlige forskningsråd. Arbejdet er strategisk politisk analyse og kommunikation.</p>
+          <p>2018 til 2021 rådgiver og programleder for internationale klimasamarbejder, blandt andet FN, IEA og CTCN.</p>
+          <p class="strong">Det politiske miljø er langsomt og hårdt. Fuldt af modsigelser og kontraster. Det er som regel forhandlingen, ikke argumentet, der afgør sagen.</p>
+          <p class="om-note">Min foredrags- og skrivevirksomhed hører ikke under mit arbejde som embedsmand, og mine holdninger står for egen regning.</p>
         </div>
         <div class="om-block">
           <p class="om-h">Fra bøgerne</p>
-          <p>B.A. i litteraturvidenskab og journalistik, Lunds Universitet. M.A. i amerikansk litteratur, politik og journalistik, New Orleans. Business og marketing fra Wharton og CBS.</p>
-          <p class="strong">Jeg bruger litteraturens blik for, hvad ord gør, og politikkens for, hvem der tjener på det.</p>
-        </div>
-        <div class="om-block">
-          <p class="om-h">Som skribent</p>
-          <p>Kontrast, Berlingske, Jyllands-Posten, Ekstra Bladet og Huffington Post. Egen udgivelse, Det der skal siges, hver uge.</p>
-          <p>Bogen “Berøringsangst: Vidnesbyrd om et islamisk normpres, som fagfolk slår sig på hver dag”, epilog, 2026, Forlaget Presto.</p>
-          <p>Bogen “Naturens sprog”, essay, Eksistensen 2018.</p>
-          <p>To bøger undervejs: én om hykleri som social mekanisme, én om frihedens pris og værdier i demokratier under pres.</p>
+          <p>B.A. i litteraturvidenskab og journalistik, Lunds Universitet.</p>
+          <p>M.A. i amerikansk litteratur, politik og journalistik, University of New Orleans.</p>
+          <p>Virksomhedsstudier og markedsføring, Wharton og Copenhagen Business School.</p>
         </div>
         <div class="om-block">
           <p class="om-h">Ærestitler og nomineringer</p>
-          <p>Fellow, Salzburg Global Seminar – globalt forum for beslutningstagere og forandringsagenter, grundlagt i 1947.</p>
+          <p>Fellow, Salzburg Global Seminar, globalt forum for beslutningstagere, grundlagt i 1947.</p>
+          <p>Har siddet i rådgivende udvalg, blandt andet for tidligere klimaminister Ida Auken og for George Mason University.</p>
           <p>Future Sustainability Leader, DNV GL, 2014.</p>
           <p>Nomineret til Richard Bransons lederskabsforum, 2014.</p>
-          <p>Advisory board for tidligere klimaminister Ida Auken, George Mason University, m.fl.</p>
         </div>
       </div>
       </details>
