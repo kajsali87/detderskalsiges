@@ -151,10 +151,6 @@
   .feature2 h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,4vw,2.3rem);line-height:1.12;letter-spacing:-.01em;text-transform:none;margin:0 0 .8rem;}
   .feature2 p{margin:0 0 1.3rem;color:var(--ink-soft);font-size:1.08rem;}
   .feature2 .media{min-height:280px;background-size:cover;background-position:center;}
-  .sub-nudge{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;
-    margin:clamp(16px,2.4vw,24px) 0 clamp(20px,3vw,28px);padding-top:15px;
-    border-top:1px solid var(--line-soft);}
-  .sub-nudge p{margin:0;font-family:var(--sans);font-size:.92rem;color:var(--ink-soft);}
   .picks{border-top:1px solid var(--line);}
   .pick{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:baseline;padding:16px 2px;border-bottom:1px solid var(--line-soft);transition:padding-left .25s;}
   .pick:hover{padding-left:8px;}
@@ -163,9 +159,7 @@
   .pick .pd{color:var(--ink-soft);font-size:1rem;}
   .readmore{font-family:var(--sans);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);margin-top:20px;display:inline-flex;gap:.4rem;}
   .readmore:hover{color:var(--accent);}
-  .essay-cta{margin-top:clamp(28px,4vw,40px);padding:clamp(22px,3vw,30px);background:var(--surface);border:1px solid var(--line);border-radius:3px;display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;justify-content:space-between;}
-  .essay-cta p{margin:0;font-family:var(--serif);font-size:1.1rem;color:var(--ink);max-width:40ch;}
-  .essay-cta .acts{display:flex;flex-wrap:wrap;gap:10px;}
+  .essays-sub{margin-top:clamp(22px,3vw,30px);}
 
   /* om */
   .om-top{display:grid;grid-template-columns:.85fr 1.3fr;gap:clamp(28px,5vw,64px);align-items:start;margin-bottom:clamp(30px,5vw,52px);}
@@ -587,12 +581,8 @@
       </div>
       <a class="readmore reveal" href="https://detderskalsiges.substack.com/archive" target="_blank" rel="noopener">Se alle artikler på Substack →</a>
 
-      <div class="essay-cta reveal">
-        <p>Ytringsfrihed og demokratiets grænser, dobbeltmoral, og vestlige værdier. Der er emner, I gerne vil have på programmet, men ikke ved hvordan.</p>
-        <div class="acts">
-          <a class="btn" href="#foredrag">Jeg holder foredrag om det</a>
-          <a class="btn ghost" href="https://detderskalsiges.substack.com/subscribe" target="_blank" rel="noopener">Abonnér</a>
-        </div>
+      <div class="essays-sub reveal">
+        <a class="btn" href="https://detderskalsiges.substack.com/subscribe" target="_blank" rel="noopener">Abonnér</a>
       </div>
     </div>
   </section>
