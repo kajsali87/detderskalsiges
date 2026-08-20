@@ -328,7 +328,14 @@
   .more-fields[open] > summary{margin-bottom:14px;}
   .mf-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   /* samarbejde as cards */
-  .collab{display:grid !important;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .collab-lead{font-family:var(--serif);font-size:clamp(1.15rem,2.2vw,1.4rem);line-height:1.45;
+    color:var(--ink);max-width:52ch;margin:0 0 clamp(20px,3vw,28px);}
+  .collab-who{font-family:var(--sans);font-size:.86rem;line-height:1.55;color:var(--ink-soft);
+    max-width:60ch;margin:clamp(18px,2.4vw,24px) 0 0;}
+  .collab{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+  /* Står der kun ét kort tilbage, skal det ikke strække sig over hele bredden
+     og heller ikke efterlade to tomme tredjedele. */
+  .collab:has(.scen:only-child){grid-template-columns:minmax(0,560px);}
   .collab .scen{padding:clamp(22px,3vw,28px);border:1px solid var(--line);border-radius:4px;background:var(--surface);max-width:none;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:.5rem;}
   @media (max-width:900px){ .collab{grid-template-columns:1fr;} .mf-grid{grid-template-columns:1fr;} }
 </style>
@@ -704,25 +711,20 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <p class="eyebrow">Samarbejde</p>
-        <h2 class="sec-title">Skal noget siges skarpere?</h2>
+        <h2 class="sec-title">Når det skal holde</h2>
       </div>
+      <p class="collab-lead reveal">Jeg læser og udfordrer det, du har skrevet, og ser, hvor dine argumenter knækker.</p>
       <div class="collab reveal">
         <div class="scen">
-          <p class="sit">Du mangler en stemme, der ikke lyder som de fire, du plejer at ringe til.</p>
-          <p>Kommentarer, essays og baggrundsanalyse. Leveret når det er aftalt – også når deadline er i morgen.</p>
-          <span class="who">Til redaktører og udgivere</span>
+          <p class="sit">En tale, der skal betyde noget, men hvor udkastet er høfligt og tomt.</p>
+          <p>Jeg hjælper dig med at skærpe din tekst, og turde der, hvor du er bange for din egen pointe.</p>
         </div>
         <div class="scen">
-          <p class="sit">Du skal holde en tale, der betyder noget, og udkastet er høfligt og tomt.</p>
-          <p>Jeg siger, hvor argumentet knækker, og hvor du er bange for din egen pointe.</p>
-          <span class="who">Til ledere, forfattere og debattører</span>
-        </div>
-        <div class="scen">
-          <p class="sit">Du skal forsvare en position, du tror på, mod nogen der er trænet i at få dig til at virke ond.</p>
-          <p>En session, hvor jeg spiller din skarpeste modstander. Du møder hellere det argument hos mig end i direkte udsendelse.</p>
-          <span class="who">Til kandidater, talspersoner og folk med en upopulær, men rigtig sag</span>
+          <p class="sit">Et debatindlæg eller en kronik, der skal kunne holde til det kommentarspor, den lander i.</p>
+          <p>Jeg hjælper dig med at skrive til dit publikum.</p>
         </div>
       </div>
+      <p class="collab-who reveal">Til ledere, forfattere, debattører, kandidater, og andre. Og har du andet i tankerne, så spørg.</p>
       <div class="collab-foot reveal">
         <a class="btn" href="#book">Skriv til mig</a>
         <span class="note">Omfang og honorar aftaler vi, når jeg ved, hvad opgaven er.</span>
