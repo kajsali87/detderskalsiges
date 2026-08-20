@@ -60,7 +60,9 @@
   nav.main a.nl::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1px;background:var(--accent);transition:right .28s ease;}
   nav.main a.nl:hover{color:var(--ink);} nav.main a.nl:hover::after{right:0;}
 
-  .btn{font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.02em;display:inline-flex;align-items:center;gap:.5rem;padding:.62rem 1.15rem;border-radius:2px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;transition:transform .18s,background .2s,color .2s,border-color .2s;}
+  /* line-height sættes eksplicit: <button> arver den ikke fra siden som <a> gør,
+     så en knap og et knap-link ved siden af hinanden fik forskellig højde. */
+  .btn{font-family:var(--sans);font-size:.82rem;font-weight:600;letter-spacing:.02em;line-height:1.6;display:inline-flex;align-items:center;gap:.5rem;padding:.62rem 1.15rem;border-radius:2px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;transition:transform .18s,background .2s,color .2s,border-color .2s;}
   .btn:hover{transform:translateY(-1px);background:var(--accent);border-color:var(--accent);color:#fff;}
   .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);}
   .btn.ghost:hover{border-color:var(--ink);color:var(--ink);background:transparent;}
@@ -216,6 +218,11 @@
   .book-intro ol li{margin:0 0 .5rem;font-size:1rem;}
   .book-intro .press-note{margin-top:1.4rem;font-size:.92rem;color:var(--ink-soft);border-left:2px solid var(--accent);padding-left:12px;}
   form.bookform{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  form.bookform .form-note{grid-column:1/-1;margin:.2rem 0 0;font-family:var(--sans);
+    font-size:.78rem;line-height:1.5;color:var(--ink-faint);}
+  form.bookform .form-sub{grid-column:1/-1;margin:.9rem 0 0;padding-top:.9rem;
+    border-top:1px solid var(--line-soft);}
+
   form.bookform .full{grid-column:1 / -1;}
   form.bookform label{display:flex;flex-direction:column;gap:5px;font-family:var(--sans);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);}
   form.bookform input,form.bookform select,form.bookform textarea{font-family:var(--serif);font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:.6rem .7rem;}
@@ -245,6 +252,49 @@
   .newsband p{color:color-mix(in srgb,var(--paper) 74%,transparent);max-width:42ch;margin:0 auto 1.6rem;font-size:1.05rem;}
   .newsband .btn{background:var(--paper);color:var(--ink);border-color:var(--paper);}
   .newsband .btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+  /* To spor side om side. Begge har label, tekst og en knap, så et engangsbeløb
+     kræver lige så få klik som et abonnement — MobilePay lå før som småtryk. */
+  .newsband .ways{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;
+    max-width:52rem;margin:2rem auto 0;text-align:left;}
+  /* Fire faste rækker: etiket, indhold, knap, slutlinje. Indholdsrækken er den
+     eneste der strækker sig, så knap og slutlinje flugter på tværs af kortene,
+     uanset at det ene har to punkter og det andet et telefonnummer. */
+  .newsband .way{display:grid;grid-template-rows:auto 1fr auto auto;
+    padding:clamp(20px,2.6vw,28px);border-radius:4px;
+    border:1px solid color-mix(in srgb,var(--paper) 22%,transparent);
+    background:color-mix(in srgb,var(--paper) 5%,transparent);}
+  .newsband .way-main{background:color-mix(in srgb,var(--paper) 9%,transparent);
+    border-color:color-mix(in srgb,var(--paper) 34%,transparent);}
+  .newsband .way .k{font-family:var(--sans);font-size:.66rem;letter-spacing:.2em;
+    text-transform:uppercase;color:color-mix(in srgb,var(--paper) 62%,transparent);
+    margin-bottom:.9rem;}
+  .newsband .way-body{margin:0 0 1.4rem;}
+  .newsband .way-list{list-style:none;margin:0;padding:0;display:flex;
+    flex-direction:column;gap:.6rem;}
+  .newsband .way-list li{font-family:var(--serif);font-size:1rem;line-height:1.45;
+    color:color-mix(in srgb,var(--paper) 76%,transparent);}
+  .newsband .way-list b{color:var(--paper);font-weight:600;}
+  .newsband .way-p{margin:0 0 1rem;max-width:none;font-size:1rem;}
+  .newsband .way .mp-number{color:var(--paper);text-align:left;padding:0;
+    font-size:1.25rem;}
+  .newsband .way .btn{justify-self:stretch;text-align:center;justify-content:center;}
+  .newsband .way .mp-copy{width:100%;border-color:color-mix(in srgb,var(--paper) 45%,transparent);
+    color:var(--paper);background:transparent;}
+  .newsband .way .mp-copy:hover{background:var(--paper);color:var(--ink);border-color:var(--paper);}
+  .newsband .way .fine{margin:.9rem 0 0;}
+  /* Afsluttende linje i hvert kort. Hverken "Tusind tak" eller opsigelsen er
+     forbehold med småt — de læses som en henvendelse og får fuld tekststørrelse. */
+  /* Fast linjehøjde i rem, ikke relativ: de to slutlinjer har forskellig
+     skriftstørrelse, og en relativ line-height ville gøre den nederste række
+     ulige høj — og dermed skubbe knapperne fra hinanden. */
+  .newsband .way-foot{margin:1rem 0 0;max-width:none;font-family:var(--serif);
+    font-size:1.1rem;line-height:1.6rem;letter-spacing:0;text-transform:none;
+    color:color-mix(in srgb,var(--paper) 82%,transparent);}
+  /* Opsigelsen er en tryghed, ikke en hilsen — den må gerne fylde mindre
+     end "Tusind tak", men stadig mere end et forbehold med småt. */
+  .newsband .way-foot.quiet{font-size:.9rem;
+    color:color-mix(in srgb,var(--paper) 66%,transparent);}
+  @media (max-width:760px){ .newsband .ways{grid-template-columns:1fr;} }
   .newsband .fine{font-family:var(--sans);font-size:.72rem;letter-spacing:.04em;color:color-mix(in srgb,var(--paper) 52%,transparent);margin-top:1.2rem;}
 
   /* footer */
@@ -431,13 +481,13 @@
     </div>
     <nav class="main">
       <div class="nav-links" id="navMenu">
-        <a class="nl" href="#essays">Essays</a>
+        <a class="nl" href="#essays">Artikler</a>
         <a class="nl" href="#foredrag">Foredrag</a>
         <a class="nl" href="#boger">Bøger</a>
         <a class="nl" href="#samarbejde">Samarbejde</a>
         <a class="nl" href="#om">Om</a>
         <a class="nl" href="#book">Book</a>
-        <a class="nl" href="#stot">Støt</a>
+        <a class="nl" href="#nyhedsbrev">Støt</a>
       </div>
       <button class="theme-toggle" id="themeBtn" aria-label="Skift tema" title="Skift tema">◐</button>
       <a class="btn small" href="https://detderskalsiges.substack.com/subscribe" target="_blank" rel="noopener">Abonnér</a>
@@ -737,7 +787,7 @@
     <div class="wrap">
       <div class="book-grid">
         <div class="book-intro reveal">
-          <p class="eyebrow">Book mig</p>
+          <p class="eyebrow">Kontakt</p>
           <p class="mail"><a href="mailto:kontakt@kajsapaludan.dk?subject=Foredragsforesp%C3%B8rgsel">kontakt@kajsapaludan.dk</a></p>
           <p class="reply">Svar inden for to hverdage</p>
           <p style="margin-top:1.2rem;color:var(--ink-soft);">Fem ting, så vi kan komme hurtigt videre:</p>
@@ -745,9 +795,9 @@
             <li>Hvem er I, og hvem sidder i salen</li>
             <li>Dato eller periode, og hvor længe</li>
             <li>Hvilket foredrag, eller hvilket spørgsmål</li>
-            <li>Hvor</li>
+            <li>Hvor i landet eller online</li>
+            <li>Hvilken ramme I har at gøre godt med</li>
           </ol>
-          <p class="press-note">Journalist på deadline? Skriv “PRESSE” i emnefeltet, så rykker den frem.</p>
         </div>
         <form class="bookform reveal" id="bookform">
           <label>Navn<input type="text" name="Navn" required></label>
@@ -758,59 +808,54 @@
           <div class="mf-grid">
             <label>Rolle<input type="text" name="Rolle"></label>
             <label>Telefon<input type="tel" name="Telefon"></label>
-            <label>Type arrangement<input type="text" name="Type arrangement"></label>
+            <label>Type af arrangement<input type="text" name="Type af arrangement"></label>
             <label>Dato eller periode<input type="text" name="Dato"></label>
             <label>Antal i salen<input type="text" name="Antal"></label>
             <label>Sted<input type="text" name="Sted"></label>
             <label>Foredrag eller emne<input type="text" name="Foredrag eller emne"></label>
-            <label>Ramme<input type="text" name="Ramme"></label>
           </div></details>
           <button class="btn" type="submit">Send forespørgsel</button>
+          <p class="form-note">Oplysningerne bruges kun til at svare på din forespørgsel.
+            Du bliver ikke tilmeldt nyhedsbrevet.</p>
+          <p class="form-sub"><a class="btn ghost" href="https://detderskalsiges.substack.com/subscribe"
+            target="_blank" rel="noopener">Tilmeld nyhedsbrevet</a></p>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- STØT -->
-  <section id="stot" class="stotband">
-    <div class="wrap">
-      <div class="stot-in reveal">
-        <div class="stot-lead">
-          <p class="eyebrow">Støt <span class="dot">·</span> Uafhængig skrivning</p>
-          <h2 class="sec-title">Støt mit arbejde</h2>
-          <p>Jeg skriver uafhængigt, og det er kun muligt, når mine læsere vælger at holde det ved live. Du kan støtte på to måder.</p>
+  <!-- NYHEDSBREV (Støt lagt sammen hertil) -->
+  <section id="nyhedsbrev" class="newsband">
+    <div class="wrap in reveal">
+      <p class="eyebrow">Nyhedsbrev <span class="dot" style="color:inherit;">·</span> Det der skal siges</p>
+      <h2>Læs med og støt mit arbejde</h2>
+      <p>Jeg skriver uafhængigt, og det kan kun lade sig gøre, fordi læsere holder det i live. Et abonnement er både adgangen og støtten.</p>
+
+      <div class="ways">
+        <div class="way way-main">
+          <span class="k">Abonnement</span>
+          <div class="way-body">
+            <ul class="way-list">
+              <li><b>Gratis.</b> Artikler i din indbakke, når de udkommer.</li>
+              <li><b>Betalt.</b> Alt, også det bag betalingsmuren. Invitationer til foredrag før alle andre.</li>
+            </ul>
+          </div>
+          <a class="btn" href="https://detderskalsiges.substack.com/subscribe" target="_blank" rel="noopener">Abonnér</a>
+          <p class="way-foot quiet">Opsig abonnementet når du vil.</p>
         </div>
-        <div class="stot-cards">
-          <div class="stot-card">
-            <span class="k">Løbende</span>
-            <h3>Støttemedlem</h3>
-            <p>Månedligt eller årligt via Substack. Fri adgang til artikler og analyser.</p>
-            <a class="btn" href="https://detderskalsiges.substack.com/subscribe" target="_blank" rel="noopener">Bliv støttemedlem</a>
-          </div>
-          <div class="stot-card">
-            <span class="k">Engangsbeløb</span>
-            <h3>En kop kaffe</h3>
-            <p>Send et engangsbeløb via MobilePay, hvis du vil støtte mit arbejde. Tusind tak!</p>
+
+        <div class="way way-mp">
+          <span class="k">Engangsbeløb</span>
+          <div class="way-body">
+            <p class="way-p">Vil du hellere sende et engangsbeløb, tager jeg imod på MobilePay.</p>
             <div class="mp-number">+46 (0)70 278 12 82</div>
-            <button class="btn ghost mp-copy" type="button" data-mp="+46702781282">Kopiér nummer</button>
           </div>
-          <p class="stot-free">Det er dog stadig muligt at læse mange af mine artikler gratis.</p>
+          <button class="btn ghost mp-copy" type="button" data-mp="+46702781282">Kopiér nummer</button>
+          <p class="way-foot">Tusind tak.</p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- NYHEDSBREV -->
-  <section class="newsband">
-    <div class="wrap in reveal">
-      <p class="eyebrow">Nyhedsbrev <span class="dot" style="color:inherit;">·</span> Det der skal siges</p>
-      <h2>Læs med, hver gang det bliver sagt</h2>
-      <p>Nye essays direkte i din indbakke. Ingen larm, ingen spam.</p>
-      <a class="btn" href="https://detderskalsiges.substack.com/subscribe" target="_blank" rel="noopener">Abonnér</a>
-      <p class="fine">Gratis og betalte abonnementer. Sig op når som helst.</p>
-    </div>
-  </section>
-
 </main>
 
 <footer class="site">
